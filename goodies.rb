@@ -72,14 +72,23 @@ def create_symlink
   end
 end
 
-case ARGV.first
-when 'install'
+def update
+  `cd #{__dir__} && git pull origin master`
+  install
+end
+
+def install
   check_binaries
   copy_scripts
   patch_bashrc
   create_symlink
+end
+
+case ARGV.first
+when 'install'
+  install
 when 'update'
-  puts "Not implemented".red
+  update
 else
   puts "Only `install` or `update` commands are supported.".yellow
 end
