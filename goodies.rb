@@ -62,11 +62,22 @@ def patch_bashrc
   end
 end
 
+def create_symlink
+  unless File.symlink?('/usr/bin/goodies')
+    file = File.expand_path(__FILE__, __dir__)
+    `sudo ln -s -f #{file} /usr/bin/goodies`
+    puts "Create binary: file".green
+  else
+    puts 'Binary exists'
+  end
+end
+
 case ARGV.first
 when 'install'
   check_binaries
   copy_scripts
   patch_bashrc
+  create_symlink
 when 'update'
   puts "Not implemented".red
 else
