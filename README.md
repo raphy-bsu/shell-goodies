@@ -6,8 +6,10 @@ Bash functions to develop with comfort!
 ## How to install
 
 ```
-git clone https://github.com/raphy-bsu/shell-goodies
-cd shell-goodies
+sudo apt-get -y update && \
+sudo apt-get -y install git-core ruby && \
+git clone https://github.com/raphy-bsu/shell-goodies && \
+cd shell-goodies && \
 ruby goodies.rb install # Will require password for installation
 ```
 
