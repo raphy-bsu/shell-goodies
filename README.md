@@ -5,6 +5,8 @@ Bash functions to develop with comfort!
 
 ## How to install
 
+Copy & paste in terminal:
+
 ```
 sudo apt-get -y update && \
 sudo apt-get -y install git-core ruby && \
