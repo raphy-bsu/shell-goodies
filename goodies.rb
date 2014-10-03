@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+
 begin
   require 'colorize'
 rescue Exception
@@ -46,12 +49,24 @@ def copy_scripts
 end
 
 def patch_bashrc
+  bashrc_path = File.expand_path('~/.bashrc')
+  bashrc = File.readlines(bashrc_path)
+  script_list.each do |name|
+    require_line = "source ~/.#{name}-goodies.bash"
+    unless bashrc.any?{|l| l =~ /#{require_line}/ }
+      puts "Install #{name}-goodies in ~/.bashrc"
+      open(bashrc_path, 'a') { |f| f.puts require_line }
+    else
+      puts "#{name}-goodies already in ~/.bashrc"
+    end
+  end
 end
 
 case ARGV.first
 when 'install'
   check_binaries
   copy_scripts
+  patch_bashrc
 when 'update'
   puts "Not implemented".red
 else
