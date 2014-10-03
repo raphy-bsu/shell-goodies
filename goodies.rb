@@ -48,6 +48,12 @@ end
 def patch_bashrc
 end
 
-check_binaries
-copy_scripts
-puts script_list
+case ARGV.first
+when 'install'
+  check_binaries
+  copy_scripts
+when 'update'
+  puts "Not implemented".red
+else
+  puts "Only `install` or `update` commands are supported.".yellow
+end
