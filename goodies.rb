@@ -63,7 +63,7 @@ def patch_bashrc
 end
 
 def create_symlink
-  unless File.symlink?('/usr/bin/goodies')
+  unless !File.symlink?('/usr/bin/goodies') ||  __FILE__ == '/usr/bin/goodies'
     file = File.expand_path(__FILE__, __dir__)
     `sudo ln -s -f #{file} /usr/bin/goodies`
     puts "Create binary".green
