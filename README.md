@@ -1,7 +1,13 @@
 Shell Goodies
 =============
 
-Bash functions to develop with comfort!
+Modify you bash environment the way you like.
+
+## Features
+
+* Some basic suit of bash functions
+* Manager for bash files that contains useful functions
+* Your personal scripts never will be lost. See plugins section
 
 ## How to install
 
@@ -21,9 +27,22 @@ ruby goodies.rb install # Will require password for installation
 goodies update
 ```
 
-This will make `git pull` and will run the install script
+## Plugins
 
+We provide a number of useful functions. But, of course, we can not
+give you all you need. So, we provide plugin manager to configure
+your bash enviroment the way you like.
 
-## TODO
+### What is plugin
 
-implement plugins
+Plugin is a git repository with your scripts.
+
+### How it works
+
+All `*.bash` scripts from your repository will be
+defined in your `~/.bashrc` as `source <filename>`.
+
+### Adding plugins
+
+* Create file `~/.goodies-plugins`
+* Write appropriate links (links for git clone) into file
