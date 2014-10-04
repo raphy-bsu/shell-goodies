@@ -13,7 +13,7 @@ Modify you bash environment the way you like.
 
 Copy & paste in terminal:
 
-```
+```bash
 sudo apt-get -y update && \
 sudo apt-get -y install git-core ruby && \
 git clone https://github.com/raphy-bsu/shell-goodies ~/.shell-goodies && \
@@ -23,7 +23,7 @@ ruby goodies.rb install # Will require password for installation
 
 ## How to update
 
-```
+```bash
 goodies update
 ```
 
@@ -46,3 +46,9 @@ defined in your `~/.bashrc` as `source <filename>`.
 
 * Create file `~/.goodies-plugins`
 * Write appropriate links (links for git clone) into file
+
+### Apply changes
+
+```bash
+goodies update
+```
