@@ -193,6 +193,7 @@ when 'install'
   puts "Done!".green
 when 'update'
   update
+  install_plugins
 else
   puts "Only `install` or `update` commands are supported.".yellow
 end
