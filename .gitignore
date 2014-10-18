@@ -1,2 +1,5 @@
 doc/
 .yardoc/
+
+output/
+tmp/
