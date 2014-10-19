@@ -26,6 +26,7 @@ BINARY_PATH     = '/usr/bin/goodies'
 # What file should be patched
 BASHRC_PATH     = File.expand_path('~/.bashrc')
 PLUGINS_DIR     = File.join(INSTALL_DIR, 'plugins')
+GOODIES_INCLUDES_PATH = File.expand_path('~/.goodies-sources')
 
 # Try to execute block. If block raises ddxception, it puts bactrace and returns specified value.
 #
@@ -135,9 +136,21 @@ def download_plugins
   end
 end
 
+
+def generate_goodies_includes
+  built_in = Dir['script/*'].map{|f| File.expand_path f}
+  plugins  = Dir["#{PLUGINS_DIR}/**/*.bash"].map{|f| File.expand_path f}
+  open(GOODIES_INCLUDES_PATH, 'w') do |f|
+    (built_in+plugins).map{|p| "source #{p}"}.each do |source|
+      f.puts source
+    end
+  end
+end
+
 # Install plugins to your home directory
 def install_plugins
   download_plugins
+  generate_goodies_includes
 end
 
 # Copy scripts to home folder
@@ -153,14 +166,12 @@ end
 # Add scripts to .bashrc
 def patch_bashrc
   bashrc = File.readlines(BASHRC_PATH)
-  script_list.each do |name|
-    require_line = "source ~/.#{name}-goodies.bash"
-    unless bashrc.any?{|l| l =~ /#{require_line}/ }
-      puts "Install #{name}-goodies in ~/.bashrc"
-      open(BASHRC_PATH, 'a') { |f| f.puts require_line }
-    else
-      puts "#{name}-goodies already in ~/.bashrc"
-    end
+  require_line = "source ~/.goodies-sources"
+  unless bashrc.any?{|l| l =~ /#{require_line}/ }
+    puts "Install goodies-sources in ~/.bashrc"
+    open(BASHRC_PATH, 'a') { |f| f.puts require_line }
+  else
+    puts "goodies-sources already in ~/.bashrc"
   end
 end
 
@@ -174,6 +185,7 @@ def create_symlink
   end
 end
 
+# Update current installation of goodies.rb
 def update
   `cd #{__dir__} && git pull origin master`
   install
