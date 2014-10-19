@@ -145,6 +145,7 @@ def generate_goodies_includes
       f.puts source
     end
   end
+  puts "Generate goodies includes".green
 end
 
 # Install plugins to your home directory
