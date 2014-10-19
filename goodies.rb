@@ -196,12 +196,12 @@ def install
   copy_scripts
   patch_bashrc
   create_symlink
+  install_plugins
 end
 
 case ARGV.first
 when 'install'
   install
-  install_plugins
   puts "Done!".green
 when 'update'
   update
