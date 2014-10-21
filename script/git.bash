@@ -24,3 +24,17 @@ function gp(){
   git push origin `current_branch`
 }
 
+
+function commit(){
+  if [[ $1 ]]; then
+    issue=`current_issue`
+    if [[ $issue ]]; then
+      git commit -m "#$issue - $1"
+    else
+      echo "No issue detected. General commit"
+      git commit -m "$1"
+    fi
+  else
+    echo "Specify message for commit"
+  fi
+}
