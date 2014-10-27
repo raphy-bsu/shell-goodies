@@ -110,7 +110,7 @@ end
 # @return   [Array]   the list of file basenames
 def plugins_links
   if File.exists? CONFIG_FILENAME
-    File.readlines(CONFIG_FILENAME).uniq
+    File.readlines(CONFIG_FILENAME).reject{|l| l =~ /^[ ]*[#].*$/ }.uniq
   else
     []
   end
