@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function deploy(){
   git push origin master
   bundle exec cap production deploy

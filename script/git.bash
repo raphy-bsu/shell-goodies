@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function update_repo(){
   git remote update
   git pull --all
@@ -28,7 +30,7 @@ function gp(){
 function commit(){
   if [[ $1 ]]; then
     issue=`current_issue`
-    if [[ $issue ]]; then
+    if [[ ${issue} ]]; then
       git commit -m "#$issue - $1"
     else
       echo "No issue detected. General commit"
