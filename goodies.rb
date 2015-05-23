@@ -177,7 +177,7 @@ def create_symlink
     puts 'Binary exists'
   else
     file = File.expand_path(__FILE__, __dir__)
-    `sudo ln -s -f #{file} #{BINARY_PATH}`
+    `sudo ln -f #{file} #{BINARY_PATH}`
     puts 'Create binary'.green
   end
 end
