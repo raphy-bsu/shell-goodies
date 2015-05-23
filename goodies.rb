@@ -168,21 +168,21 @@ end
 def patch_bashrc
   bashrc = File.readlines(BASHRC_PATH)
   require_line = 'source ~/.goodies-sources'
-  unless bashrc.any?{|l| l =~ /#{require_line}/ }
+  if bashrc.any? { |l| l =~ /#{require_line}/ }
+    puts 'goodies-sources already in ~/.bashrc'
+  else
     puts 'Install goodies-sources in ~/.bashrc'
     open(BASHRC_PATH, 'a') { |f| f.puts require_line }
-  else
-    puts 'goodies-sources already in ~/.bashrc'
   end
 end
 
 def create_symlink
-  unless !File.symlink?(BINARY_PATH) ||  __FILE__ == BINARY_PATH
+  if !File.symlink?(BINARY_PATH) || __FILE__ == BINARY_PATH
+    puts 'Binary exists'
+  else
     file = File.expand_path(__FILE__, __dir__)
     `sudo ln -s -f #{file} #{BINARY_PATH}`
     puts 'Create binary'.green
-  else
-    puts 'Binary exists'
   end
 end
 
