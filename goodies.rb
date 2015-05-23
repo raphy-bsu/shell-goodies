@@ -7,7 +7,7 @@ require 'open3'
 begin
   require 'colorize'
 rescue Exception
-  puts "Installing appropriate gems"
+  puts 'Installing appropriate gems'
   `sudo gem install colorize`
   `gem install colorize`
   Gem.refresh
@@ -15,9 +15,9 @@ rescue Exception
 end
 
 BINARIES = [
-  "git",
-  "hub",
-  "bundle",
+  'git',
+  'hub',
+  'bundle',
 ]
 
 CONFIG_FILENAME = File.expand_path('~/.goodies-plugins')
@@ -85,14 +85,14 @@ def check_binaries
   BINARIES.each do |bin|
     if `which #{bin}`.empty?
       all_installed = false
-      puts "#{bin} "+"[NOT FOUND]".red
+      puts "#{bin} "+'[NOT FOUND]'.red
     else
-      puts "#{bin} "+"[OK]".green
+      puts "#{bin} "+'[OK]'.green
     end
   end
 
   unless all_installed
-    puts "Install appropriate programs before"
+    puts 'Install appropriate programs before'
     raise SystemExit
   end
 
@@ -102,7 +102,7 @@ end
 #
 # @return   [Array]   the list of file basenames
 def script_list
-  Dir['script/*'].map{|f| File.basename(f, ".*")}
+  Dir['script/*'].map{|f| File.basename(f, '.*')}
 end
 
 # Get list of available plugins
@@ -145,7 +145,7 @@ def generate_goodies_includes
       f.puts source
     end
   end
-  puts "Generate goodies includes".green
+  puts 'Generate goodies includes'.green
 end
 
 # Install plugins to your home directory
@@ -167,12 +167,12 @@ end
 # Add scripts to .bashrc
 def patch_bashrc
   bashrc = File.readlines(BASHRC_PATH)
-  require_line = "source ~/.goodies-sources"
+  require_line = 'source ~/.goodies-sources'
   unless bashrc.any?{|l| l =~ /#{require_line}/ }
-    puts "Install goodies-sources in ~/.bashrc"
+    puts 'Install goodies-sources in ~/.bashrc'
     open(BASHRC_PATH, 'a') { |f| f.puts require_line }
   else
-    puts "goodies-sources already in ~/.bashrc"
+    puts 'goodies-sources already in ~/.bashrc'
   end
 end
 
@@ -180,7 +180,7 @@ def create_symlink
   unless !File.symlink?(BINARY_PATH) ||  __FILE__ == BINARY_PATH
     file = File.expand_path(__FILE__, __dir__)
     `sudo ln -s -f #{file} #{BINARY_PATH}`
-    puts "Create binary".green
+    puts 'Create binary'.green
   else
     puts 'Binary exists'
   end
@@ -203,10 +203,10 @@ case ARGV.first
 when 'install'
   install
   install_plugins
-  puts "Done!".green
+  puts 'Done!'.green
 when 'update'
   update
   install_plugins
 else
-  puts "Only `install` or `update` commands are supported.".yellow
+  puts 'Only `install` or `update` commands are supported.'.yellow
 end
