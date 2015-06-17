@@ -10,7 +10,7 @@ function current_branch(){
 }
 
 function current_issue(){
-  echo `current_branch` | grep -o '[0-9]\+'
+  echo `current_branch` | awk -F_ '{print $1}' | grep -o '[0-9]\+'
 }
 
 function pull_request(){
