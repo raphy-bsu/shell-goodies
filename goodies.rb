@@ -14,7 +14,7 @@ rescue Exception
   require 'colorize'
 end
 
-BINARIES = %w(git hub bundle)
+BINARIES = %w(git bundle)
 
 CONFIG_FILENAME = File.expand_path('~/.goodies-plugins')
 INSTALL_DIR     = File.expand_path('~/.shell-goodies')
