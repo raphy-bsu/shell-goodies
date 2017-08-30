@@ -6,12 +6,14 @@ require 'open3'
 
 begin
   require 'colorize'
+  require 'os'
 rescue Exception
   puts 'Installing appropriate gems'
-  `sudo gem install colorize`
   `gem install colorize`
+  `gem install os`
   Gem.refresh
   require 'colorize'
+  require 'os'
 end
 
 BINARIES = %w(git bundle)
@@ -165,9 +167,9 @@ def patch_bashrc
   bashrc = File.readlines(BASHRC_PATH)
   require_line = 'source ~/.goodies-sources'
   if bashrc.any? { |l| l =~ /#{require_line}/ }
-    puts 'goodies-sources already in ~/.bashrc'
+    puts 'goodies-sources already in your bash config'
   else
-    puts 'Install goodies-sources in ~/.bashrc'
+    puts 'Install goodies-sources in your bash config'
     open(BASHRC_PATH, 'a') { |f| f.puts require_line }
   end
 end
