@@ -20,7 +20,7 @@ CONFIG_FILENAME = File.expand_path('~/.goodies-plugins')
 INSTALL_DIR     = File.expand_path('~/.shell-goodies')
 BINARY_PATH     = '/usr/bin/goodies'
 # What file should be patched
-BASHRC_PATH     = File.expand_path('~/.bashrc')
+BASHRC_PATH     = OS.mac? ? File.expand_path('~/.bash_profile') : File.expand_path('~/.bashrc')
 PLUGINS_DIR     = File.join(INSTALL_DIR, 'plugins')
 GOODIES_INCLUDES_PATH = File.expand_path('~/.goodies-sources')
 

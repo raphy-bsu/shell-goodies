@@ -13,9 +13,19 @@ Modify you bash environment the way you like.
 
 Copy & paste in terminal:
 
+For Ubuntu:
+
 ```bash
 sudo apt-get -y update && \
 sudo apt-get -y install git-core ruby && \
+git clone https://github.com/raphy-bsu/shell-goodies ~/.shell-goodies && \
+cd ~/.shell-goodies && \
+ruby goodies.rb install # Will require password for installation
+```
+
+For OSX:
+
+```
 git clone https://github.com/raphy-bsu/shell-goodies ~/.shell-goodies && \
 cd ~/.shell-goodies && \
 ruby goodies.rb install # Will require password for installation
@@ -40,7 +50,7 @@ Plugin is a git repository with your scripts.
 ### How it works
 
 All `*.bash` scripts from your repository will be
-defined in your `~/.bashrc` as `source <filename>`.
+defined in your `~/.bashrc` or `~/.bash_profile` as `source <filename>`.
 
 ### Adding plugins
 
