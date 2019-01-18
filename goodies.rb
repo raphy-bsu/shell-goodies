@@ -16,9 +16,11 @@ rescue Exception
     puts "We need your password to install gems widesystem"
     `sudo gem install colorize`
     `sudo gem install os`
+    `sudo gem install bundler` unless system("gem which bundler")
   else
     `gem install colorize`
     `gem install os`
+    `gem install bundler` unless system("gem which bundler")
   end
   Gem.refresh
   require 'colorize'
