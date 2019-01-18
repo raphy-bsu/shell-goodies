@@ -9,8 +9,14 @@ begin
   require 'os'
 rescue Exception
   puts 'Installing appropriate gems'
-  `gem install colorize`
-  `gem install os`
+  if `which gem`.include? '/usr/'
+    puts "We need your password to install gems widesystem"
+    `sudo gem install colorize`
+    `sudo gem install os`
+  else
+    `gem install colorize`
+    `gem install os`
+  end
   Gem.refresh
   require 'colorize'
   require 'os'
