@@ -4,7 +4,10 @@
 require 'fileutils'
 require 'open3'
 
+class GemNotFound < Exception; end
+
 begin
+  raise GemNotFound unless system("gem which bundler")
   require 'colorize'
   require 'os'
 rescue Exception
